@@ -1,0 +1,1 @@
+export {default as kabiLayout1} from './kabiLayout1.vue';

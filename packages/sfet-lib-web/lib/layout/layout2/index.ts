@@ -1,0 +1,1 @@
+export {default as layout2} from './layout2.vue';

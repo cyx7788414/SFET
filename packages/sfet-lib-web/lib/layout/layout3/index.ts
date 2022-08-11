@@ -1,0 +1,1 @@
+export {default as layout3} from './layout3.vue';

@@ -1,0 +1,23 @@
+{
+  "name": "SFET",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Small Front-End Terminator（小前端终结者），解放个人生产力的一次尝试，望有善终",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "workspaces:": [
+    "packages/*"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cyx7788414/SFET.git"
+  },
+  "author": "kabi",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cyx7788414/SFET/issues"
+  },
+  "homepage": "https://github.com/cyx7788414/SFET#readme"
+}
