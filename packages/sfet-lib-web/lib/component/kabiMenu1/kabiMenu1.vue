@@ -1,24 +1,8 @@
 <template>
     <div class="sfet-var-container" :class="theme.css" :style="theme.var">
-        <!-- <el-menu active-text-color="#ffd04b" background-color="#545c64" class="el-menu-vertical-demo" default-active="2" -->
         <el-menu class="el-menu-vertical-demo" default-active="2" router>
-                <!-- <el-sub-menu v-for="item in data" index="1">
-                    <template #title>
-                        <component v-if="" :is="defineAsyncComponent(()=>import(`../../component/${asideComp}/${asideComp}.vue`))" v-bind="asideCompData"></component>
-                        <span>menus</span>
-                    </template>
-                    <el-menu-item v-for="item in data" :index="item.path">
-                        <component v-if="" :is="defineAsyncComponent(()=>import(`../../component/${asideComp}/${asideComp}.vue`))" v-bind="asideCompData"></component>
-                        <span>{{item.name}}</span>
-                    </el-menu-item>
-                </el-sub-menu>         -->
-                <kabiMenu1Item v-for="item in data" :data="item"></kabiMenu1Item>
+            <kabiMenu1Item v-for="item in data" :data="item" :base="basePath"></kabiMenu1Item>
         </el-menu>
-        <!-- <div v-for="item in data">
-            <div>{{typeof item}}</div>
-            <div>{{item}}</div>
-            <div>{{JSON.stringify(item)}}</div>
-        </div> -->
     </div>
 </template>
 <script lang="ts">
@@ -36,6 +20,11 @@ const props = {
             return value.length >= 0;
         }
     },
+    basePath: {
+        type: String,
+        default: '/',
+        required: false
+    },
     theme: {
         type: Object as PropType<ComponentPropsTheme>,
         default: () => ({}),
@@ -44,12 +33,23 @@ const props = {
 };
 
 const computed = {
+    // handledData: (vm: any) => {
+    //     const handle = (item: KabiMenu1DataItem, base: string) => {
+    //         if (item.path) {
+    //             item.path = base + (base.endsWith('/')?'':'/') + item.path;
+    //         }
+    //         if (item.children) {
+    //             item.children = item.children.map(v => handle(v, item.path || base));
+    //         }
+    //         return item;
+    //     };
+    //     return vm.data.map((v: KabiMenu1DataItem) => handle(v, vm.basePath));
+    // }
 };
 
 const methods = {
     defineAsyncComponent
 }
-console.log(this);
 
 export default defineComponent({
     name: "kabiMenu1",
@@ -57,7 +57,7 @@ export default defineComponent({
     computed,
     methods,
     setup(props, { slots, emit }) {
-        console.log(props)
+        
     },
     components: {
         kabiMenu1Item

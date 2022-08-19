@@ -5,10 +5,10 @@ const getProp = function($global: any, id: string): any {
     if (typeof prop === 'function') {
         prop = prop();
     }
-    Object.entries(prop).forEach(([id, item]) => {
+    Object.entries(prop).forEach(([key, item]) => {
         if (typeof item === 'string' && item.startsWith('$sfetData:')) {
             let dataId = item.substring(10);
-            prop[id] = $global.$store.state.data[dataId].data;
+            prop[key] = $global.$store.state.data[dataId].data;
         }
     });
     return prop;
