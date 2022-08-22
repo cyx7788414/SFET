@@ -88,23 +88,17 @@
     },
     "api": {
         "id2": {
-            "type": "dynamic",
-            "origin": "http://www.baidu.com:80",
-            "pathname": "/url1",
-            "method": "get",
-            "children": [],
-            "cache": true,
-            "preload": true
+            "type": "standard",
+            "origin": "http://127.0.0.1:4523",
+            "pathname": "/m1/1482061-0-default/api/test/a",
+            "method": "get"
         },
         "id3": {
-            "type": "process",
-            "origin": "http://www.baidu.com:80",
-            "pathname": "/url1",
+            "type": "ns",
+            "origin": "http://127.0.0.1:4523",
+            "pathname": "/m1/1482061-0-default/api/test/a",
             "method": "get",
-            "cache": true,
-            "preload": true,
-            "children": [],
-            "handle": "function"
+            "handle": "console.log($global, rest, this);return {};"
         }
     },
     "theme": {

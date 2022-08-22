@@ -27,6 +27,20 @@ export type SFETWebConfigData = {
     [key: string]: SFETWebConfigDataItem;
 };
 
+export type SFETWebConfigApiItem = {
+    type: 'standard' | 'ns';
+    irigin?: string;
+    pathname?: string;
+    method: 'get' | 'post' | 'put' | 'delete';
+    // "origin": "http://127.0.0.1:4523",
+    //         "pathname": "/m1/1482061-0-default/api/test/a",
+    //         "method": "get"
+}
+
+export type SFETWebConfigApi = {
+    [key: string]: SFETWebConfigApiItem;
+}
+
 export type SFETWebConfigPropItem = {
     config: Record<string, string | number | boolean | null | undefined | any[] | object >;
     handle?: string;
