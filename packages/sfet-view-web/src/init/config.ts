@@ -6,6 +6,7 @@ import handleData from "./data";
 import handleProp from "./prop";
 import getHandleRoute from "./router";
 import handleTheme from "./theme";
+import handleApi from "./api";
 
 const initConfig = (app: App, router: Router) => {
     const staticConfig = json.build?json:null;
@@ -17,6 +18,8 @@ const initConfig = (app: App, router: Router) => {
         app.config.globalProperties.$sfet = {
             config: config
         };
+
+        config.api && handleApi(app, config.api || {});
 
         config.data && handleData(app, config.data || {});
 

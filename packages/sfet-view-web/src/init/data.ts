@@ -3,6 +3,7 @@ import { SFETWebConfigData } from "../class/config";
 import { strToFunc } from '../common/func';
 
 import axios from 'axios';
+import { Pinia, defineStore } from "pinia";
 
 
 export type SFETDataSubscriber = {
@@ -21,10 +22,11 @@ export type SFETDataObj = {
 
 const handleData = (app: App, config: SFETWebConfigData) => {
     // let dataMap: Record<string, SFETDataObj> = {};
-    const $store = app.config.globalProperties.$store;
-    $store.registerModule('data', {
-        namespaced: true
-    });
+    // const $store = app.config.globalProperties.$store;
+    // $store.registerModule('data', {
+    //     namespaced: true
+    // });
+    const $pinia: Pinia = app.config.globalProperties.$pinia;
     Object.entries(config).forEach(([id, item]) => {
         try {
             if (item.type === 'static') {
@@ -33,19 +35,26 @@ const handleData = (app: App, config: SFETWebConfigData) => {
                 //     status: 'done'
                 // };
                 const data = item.handle?strToFunc(item.handle, item)(item.data):item.data;
-                $store.registerModule(['data', id], {
-                    namespaced: true,
-                    state() {
+                // $store.registerModule(['data', id], {
+                //     namespaced: true,
+                //     state() {
+                //         return {
+                //             data: data
+                //         };
+                //     },
+                //     // getters: {
+                //     //     data(state: any) {
+                //     //         return state.data;
+                //     //     }
+                //     // }
+                // });
+                defineStore(`data-${id}`, {
+                    state: () => {
                         return {
                             data: data
                         };
-                    },
-                    // getters: {
-                    //     data(state: any) {
-                    //         return state.data;
-                    //     }
-                    // }
-                });
+                    }
+                })();
             } else {
                 // let obj: SFETDataObj = {
                 //     data: undefined,

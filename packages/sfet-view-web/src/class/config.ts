@@ -29,12 +29,15 @@ export type SFETWebConfigData = {
 
 export type SFETWebConfigApiItem = {
     type: 'standard' | 'ns';
-    irigin?: string;
+    origin?: string;
     pathname?: string;
     method: 'get' | 'post' | 'put' | 'delete';
-    // "origin": "http://127.0.0.1:4523",
-    //         "pathname": "/m1/1482061-0-default/api/test/a",
-    //         "method": "get"
+    header?: Record<string, string | number | boolean>;
+    param?: Record<string, any>;
+    data?: any;
+    configHandle?: string;
+    onSuccess?: string;
+    onError?: string;
 }
 
 export type SFETWebConfigApi = {
@@ -64,6 +67,7 @@ type SFETWebConfig = {
     theme?: SFETWEbConfigTheme;  
     data?: SFETWebConfigData;
     props: SFETWebConfigProp;
+    api?: SFETWebConfigApi
 };
 
 export default SFETWebConfig;

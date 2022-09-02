@@ -3,7 +3,8 @@ import * as Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import initConfig from './init/config';
-import { createStore, Store } from 'vuex';
+// import { createStore, Store } from 'vuex';
+import { createPinia } from 'pinia';
 
 const app = createApp(App);
 
@@ -14,12 +15,15 @@ declare global {
     }
 }
 
-const store = createStore({});
+// const store = createStore({});
+
+const pinia = createPinia();
 
 window.App = app;
 window.Vue= Vue;
 
-app.use(store);
+// app.use(store);
+app.use(pinia);
 
 initConfig(app, router);
 
