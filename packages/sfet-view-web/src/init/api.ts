@@ -34,8 +34,8 @@ const handleApi = (app: App, config: SFETWebConfigApi) => {
     let apiMap: Record<string, SFETApiObj> = {};
     Object.entries(config).forEach(([id, item]) => {
         try {
-            let onSuccess = item.onSuccess?strToFunc(item.onSuccess, item)():undefined;
-            let onError = item.onError?strToFunc(item.onError, item)():undefined;
+            let onSuccess = item.onSuccess?strToFunc(item.onSuccess, item):undefined;
+            let onError = item.onError?strToFunc(item.onError, item):undefined;
             let obj: SFETApiObj = {
                 loading: false,
                 func: undefined
@@ -67,25 +67,46 @@ const handleApi = (app: App, config: SFETWebConfigApi) => {
                     });
                 }
             } else if (item.type === 'ns') {
-                obj.func = function(data: Object = {}, header?: Record<string, string | number | boolean>) {
-                    const instance = getRequest(item, data, header);
-                    instance.then((response) => {
-                        if (response.status === 200 ) {
-
-                        } else {
-
-                        }
-                    }).catch((reason) => {
-
-                    });
+                let checker = item.nsCheck?strToFunc(item.nsCheck, item):undefined;
+                let handle = item.nsHandle?strToFunc(item.nsHandle, item):undefined;
+                if (!checker) {
+                    throw Error('need response check');
                 }
+                if (!handle) {
+                    throw Error('need response handle');
+                }
+                obj.func = function(data: Object = {}, header?: Record<string, string | number | boolean>) {
+                    return new Promise<SFETApiData | SFETApiError>((resolve, reject) => {
+                        obj.loading = true;
+                        const instance = getRequest(item, data, header);
+                        instance.then((response: AxiosResponse) => {
+                            obj.loading = false;
+                            if (response.status === 200 && checker!(response.data)) {
+                                onSuccess && onSuccess();
+                                resolve(handle!(response.data));
+                            } else {
+                                onError && onError();
+                                reject({
+                                    status: response.status,
+                                    msg: response.statusText
+                                });
+                            }
+                        }).catch((reason) => {
+                            obj.loading = false;
+                            onError && onError();
+                            reject({
+                                msg: reason
+                            });
+                        });
+                    });
+                };
             }
             apiMap[id] = obj;
         } catch(err) {
             console.log(err);
         }
     });
-    // app.config.globalProperties.$sfet.prop = propMap;
+    app.config.globalProperties.$sfet.api = apiMap;
 };
 
 export default handleApi;

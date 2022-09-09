@@ -4,6 +4,7 @@ import { strToFunc } from '../common/func';
 
 import axios from 'axios';
 import { Pinia, defineStore } from "pinia";
+import { SFETApiObj } from "./api";
 
 
 export type SFETDataSubscriber = {
@@ -27,6 +28,7 @@ const handleData = (app: App, config: SFETWebConfigData) => {
     //     namespaced: true
     // });
     const $pinia: Pinia = app.config.globalProperties.$pinia;
+    const $api: Record<string, SFETApiObj> = app.config.globalProperties.$sfet.api;
     Object.entries(config).forEach(([id, item]) => {
         try {
             if (item.type === 'static') {
@@ -51,11 +53,30 @@ const handleData = (app: App, config: SFETWebConfigData) => {
                 defineStore(`data-${id}`, {
                     state: () => {
                         return {
-                            data: data
+                            data: data,
+                            loading: false
                         };
                     }
                 })();
-            } else {
+            } else if (item.type === 'dynamic') {
+                defineStore(`data-${id}`, {
+                    state: () => {
+                        return {
+                            data: item.default,
+                            loading: false
+                        };
+                    },
+                    actions: {
+                        async update() {
+                            this.loading = true;
+                            this.data = await $api[item.api!].func!();
+                            this.loading = false;
+                        },
+                        reset() {
+                            this.data = item.default;
+                        }
+                    }
+                })();
                 // let obj: SFETDataObj = {
                 //     data: undefined,
                 //     status: 'loading',

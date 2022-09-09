@@ -12,6 +12,8 @@ export type SFETWEbConfigTheme = {
 export type SFETWebConfigDataItem = {
     type: 'static' | 'dynamic' | 'process';
     data?: any;
+    default?: any;
+    api?: string;
     handle?: string;
     // origin?: string;
     // pathname?: string;
@@ -38,6 +40,8 @@ export type SFETWebConfigApiItem = {
     configHandle?: string;
     onSuccess?: string;
     onError?: string;
+    nsCheck?: string;
+    nsHandle?: string;
 }
 
 export type SFETWebConfigApi = {

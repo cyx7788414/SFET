@@ -84,6 +84,11 @@
                     "path": "child2"
                 }
             ]
+        },
+        "id2": {
+            "type": "dynamic",
+            "api": "id2",
+            "handle": "console.log($global, rest, this);return {};"
         }
     },
     "api": {
@@ -98,7 +103,8 @@
             "origin": "http://127.0.0.1:4523",
             "pathname": "/m1/1482061-0-default/api/test/a",
             "method": "get",
-            "handle": "console.log($global, rest, this);return {};"
+            "nsHandle": "console.log($global, rest, this);return {};",
+            "nsCheck": "console.log($global, rest, this);return {};"
         }
     },
     "theme": {
