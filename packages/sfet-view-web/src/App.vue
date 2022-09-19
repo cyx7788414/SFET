@@ -2,6 +2,11 @@
 import { getCurrentInstance, provide, reactive, readonly } from 'vue';
 const $global = reactive(getCurrentInstance()!.appContext.config.globalProperties);
 provide('$global', readonly($global));
+provide('$event', {
+  onMounted: window.Vue.onMounted,
+  onUnmounted: window.Vue.onUnmounted,
+  onBeforeRouteUpdate: window.Router.onBeforeRouteUpdate
+});
 </script>
 
 <template>

@@ -18,12 +18,14 @@ importers:
       vite: ^2.9.9
       vite-plugin-dts: ^1.1.1
       vue: ^3.2.25
+      vue-router: ^4.0.15
       vue-tsc: ^0.34.7
     dependencies:
       '@element-plus/icons': registry.npmmirror.com/@element-plus/icons/0.0.11
       '@element-plus/icons-vue': registry.npmmirror.com/@element-plus/icons-vue/2.0.6_vue@3.2.33
       element-plus: registry.npmmirror.com/element-plus/2.2.2_vue@3.2.33
       vue: registry.npmmirror.com/vue/3.2.33
+      vue-router: registry.npmmirror.com/vue-router/4.0.15_vue@3.2.33
     devDependencies:
       '@types/node': registry.npmmirror.com/@types/node/17.0.35
       '@vitejs/plugin-vue': registry.npmmirror.com/@vitejs/plugin-vue/2.3.3_vite@2.9.9+vue@3.2.33
@@ -4639,7 +4641,7 @@ packages:
     peerDependencies:
       vue: ^3.2.0
     dependencies:
-      '@vue/devtools-api': registry.npmmirror.com/@vue/devtools-api/6.1.4
+      '@vue/devtools-api': registry.npmmirror.com/@vue/devtools-api/6.2.1
       vue: registry.npmmirror.com/vue/3.2.33
     dev: false
 

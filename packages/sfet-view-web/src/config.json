@@ -88,6 +88,7 @@
         "id2": {
             "type": "dynamic",
             "api": "id2",
+            "default": [],
             "handle": "console.log($global, rest, this);return {};"
         }
     },

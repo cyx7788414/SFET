@@ -15,14 +15,6 @@ export type SFETWebConfigDataItem = {
     default?: any;
     api?: string;
     handle?: string;
-    // origin?: string;
-    // pathname?: string;
-    // method?: string;
-    // cache?: boolean;
-    // preload?: boolean;
-    // children?: Array<string>,
-    // headers?: AxiosRequestHeaders;
-    // params?: Object;
 };
 
 export type SFETWebConfigData = {

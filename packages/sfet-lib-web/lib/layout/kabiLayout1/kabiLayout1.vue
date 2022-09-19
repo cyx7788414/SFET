@@ -28,6 +28,16 @@ const props = defineProps({
 const $global: any = inject('$global');
 const asideprop = props.asideComp?getProp($global, props.asideComp.id):{};
 const asideCompConf = reactive(asideprop); 
+
+const $event: any = inject('$event');
+console.log($event);
+$event.onBeforeRouteUpdate(()=>{
+    console.log(1);
+});
+$event.onMounted((a: any, b: any, c: any)=> {
+    console.log(2, a, b, c)
+});
+
 </script>
 <script lang="ts">
 </script>
