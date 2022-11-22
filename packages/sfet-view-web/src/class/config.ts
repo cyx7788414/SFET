@@ -10,7 +10,7 @@ export type SFETWEbConfigTheme = {
 };
 
 export type SFETWebConfigDataItem = {
-    type: 'static' | 'dynamic' | 'process';
+    type: 's' | 'd' | 'p';//s: static, d: dynamic, p: process
     data?: any;
     default?: any;
     api?: string;
@@ -22,7 +22,7 @@ export type SFETWebConfigData = {
 };
 
 export type SFETWebConfigApiItem = {
-    type: 'standard' | 'ns';
+    type: 's' | 'ns'; // s: standard, ns: no standard
     origin?: string;
     pathname?: string;
     method: 'get' | 'post' | 'put' | 'delete';

@@ -40,7 +40,7 @@ const handleApi = (app: App, config: SFETWebConfigApi) => {
                 loading: false,
                 func: undefined
             };
-            if (item.type === 'standard') {
+            if (item.type === 's') {
                 obj.func = function(data: Object = {}, header?: Record<string, string | number | boolean>) {
                     return new Promise<SFETApiData | SFETApiError>((resolve, reject) => {
                         obj.loading = true;

@@ -31,7 +31,7 @@ const handleData = (app: App, config: SFETWebConfigData) => {
     const $api: Record<string, SFETApiObj> = app.config.globalProperties.$sfet.api;
     Object.entries(config).forEach(([id, item]) => {
         try {
-            if (item.type === 'static') {
+            if (item.type === 's') {
                 // dataMap[id] = {
                 //     data: item.handle?strToFunc(item.handle, item)(item.data):item.data,
                 //     status: 'done'
@@ -58,7 +58,7 @@ const handleData = (app: App, config: SFETWebConfigData) => {
                         };
                     }
                 })();
-            } else if (item.type === 'dynamic') {
+            } else if (item.type === 'd') {
                 defineStore(`data-${id}`, {
                     state: () => {
                         return {

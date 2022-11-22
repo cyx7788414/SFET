@@ -59,7 +59,7 @@
     },
     "data": {
         "id1": {
-            "type": "static",
+            "type": "s",
             "data": [
                 {
                     "id": "0",
@@ -86,7 +86,7 @@
             ]
         },
         "id2": {
-            "type": "dynamic",
+            "type": "d",
             "api": "id2",
             "default": [],
             "handle": "console.log($global, rest, this);return {};"
@@ -94,7 +94,7 @@
     },
     "api": {
         "id2": {
-            "type": "standard",
+            "type": "s",
             "origin": "http://127.0.0.1:4523",
             "pathname": "/m1/1482061-0-default/api/test/a",
             "method": "get"
