@@ -30,16 +30,14 @@ const asideprop = props.asideComp?getProp($global, props.asideComp.id):{};
 const asideCompConf = reactive(asideprop); 
 
 const $event: any = inject('$event');
-console.log($event);
 $event.onBeforeRouteUpdate(()=>{
     console.log(1);
 });
 $event.onMounted((a: any, b: any, c: any)=> {
     console.log(2, a, b, c)
+    console.log($event);
 });
 
-</script>
-<script lang="ts">
 </script>
 <style lang="less" scoped>
 .layout {

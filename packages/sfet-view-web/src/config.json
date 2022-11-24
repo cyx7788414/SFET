@@ -51,7 +51,7 @@
         },
         "id1-a1": {
             "config": {
-                "data": "$sfetData:id1",
+                "data": "$sfetData:id2",
                 "basePath": "/pages"
             },
             "handle": "console.log($global, rest, this);return this.config;"
