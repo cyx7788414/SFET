@@ -25,6 +25,22 @@ const initConfig = (app: App, router: Router) => {
 
         config.props && handleProp(app, config.props || {});
 
+
+        router.afterEach((to, from, failure) => {
+            if (!failure) {
+                console.log(to.matched, from.matched);
+                let i;
+                for (i = 0; i < to.matched.length; i++) {
+                    if (to.matched[i] !== from.matched[i]) {
+                        break;
+                    }
+                }
+                to.matched.slice(i).forEach(v => {
+
+                });
+            }
+        });
+
         getHandleRoute(router, config)(config.routes);
 
         config.theme && handleTheme(config.theme || {css: {}, var: {}});

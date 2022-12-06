@@ -51,7 +51,7 @@
         },
         "id1-a1": {
             "config": {
-                "data": "$sfetData:id2",
+                "data": "$sfetData:id1",
                 "basePath": "/pages"
             },
             "handle": "console.log($global, rest, this);return this.config;"
@@ -107,6 +107,15 @@
             "nsHandle": "console.log($global, rest, this);return {};",
             "nsCheck": "console.log($global, rest, this);return {};"
         }
+    },
+    "routerEvent": {
+        "pages": "e1",
+        "child1": "e1",
+        "d1": "e1",
+        "d2": "e1"
+    },
+    "event": {
+        "e1": "console.log($global, rest, this);"
     },
     "theme": {
         "css": {

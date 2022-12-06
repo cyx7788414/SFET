@@ -1,6 +1,6 @@
 import { AxiosRequestHeaders } from "axios";
 
-export type SFETWEbConfigTheme = {
+export type SFETWebConfigTheme = {
     css?: {
         [key: string]: string;
     };
@@ -52,18 +52,28 @@ export type SFETWebConfigProp = {
 export type SFETWebConfigRouteItem = {
     id: string;
     path?: string;
-    name: string;
+    name: string;//for event, name = id
     layout: string;
     default?: boolean;
     children?: Array<SFETWebConfigRouteItem>;
 };
 
+export type SFETWebConfigEvent = {
+    
+};
+
+export type SFETWebConfigRouterEvent = {
+
+};
+
 type SFETWebConfig = {
     routes?: Array<SFETWebConfigRouteItem>;
-    theme?: SFETWEbConfigTheme;  
+    theme?: SFETWebConfigTheme;  
     data?: SFETWebConfigData;
     props: SFETWebConfigProp;
-    api?: SFETWebConfigApi
+    api?: SFETWebConfigApi;
+    event?: SFETWebConfigEvent;
+    routerEvent?: SFETWebConfigRouterEvent
 };
 
 export default SFETWebConfig;
