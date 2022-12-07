@@ -58,12 +58,17 @@ export type SFETWebConfigRouteItem = {
     children?: Array<SFETWebConfigRouteItem>;
 };
 
+export type SFETWebConfigEventItem = {
+    type: string;
+    body: string | Array<SFETWebConfigEventItem>;
+};
+
 export type SFETWebConfigEvent = {
-    
+    [key: string]: SFETWebConfigEventItem;
 };
 
 export type SFETWebConfigRouterEvent = {
-
+   [key: string]: string;
 };
 
 type SFETWebConfig = {

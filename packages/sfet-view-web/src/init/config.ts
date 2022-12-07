@@ -7,6 +7,7 @@ import handleProp from "./prop";
 import getHandleRoute from "./router";
 import handleTheme from "./theme";
 import handleApi from "./api";
+import handleEvent from "./event";
 
 const initConfig = (app: App, router: Router) => {
     const staticConfig = json.build?json:null;
@@ -23,6 +24,8 @@ const initConfig = (app: App, router: Router) => {
 
         config.data && handleData(app, config.data || {});
 
+        config.event && handleEvent(app, config.event || {});
+
         config.props && handleProp(app, config.props || {});
 
 
@@ -36,7 +39,7 @@ const initConfig = (app: App, router: Router) => {
                     }
                 }
                 to.matched.slice(i).forEach(v => {
-
+                    console.log(v.name);
                 });
             }
         });
