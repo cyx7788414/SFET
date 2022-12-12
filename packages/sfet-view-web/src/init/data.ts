@@ -3,7 +3,7 @@ import { SFETWebConfigData } from "../class/config";
 import { strToFunc } from '../common/func';
 
 import axios from 'axios';
-import { Pinia, defineStore } from "pinia";
+import { Pinia, defineStore, StoreDefinition } from "pinia";
 import { SFETApiObj } from "./api";
 
 
@@ -29,6 +29,8 @@ const handleData = (app: App, config: SFETWebConfigData) => {
     // });
     const $pinia: Pinia = app.config.globalProperties.$pinia;
     const $api: Record<string, SFETApiObj> = app.config.globalProperties.$sfet.api;
+    let dataMap: Record<string, any> = {};
+
     Object.entries(config).forEach(([id, item]) => {
         try {
             if (item.type === 's') {
@@ -50,7 +52,7 @@ const handleData = (app: App, config: SFETWebConfigData) => {
                 //     //     }
                 //     // }
                 // });
-                defineStore(`data-${id}`, {
+                dataMap[id] = defineStore(`data-${id}`, {
                     state: () => {
                         return {
                             data: data,
@@ -59,7 +61,7 @@ const handleData = (app: App, config: SFETWebConfigData) => {
                     }
                 })();
             } else if (item.type === 'd') {
-                defineStore(`data-${id}`, {
+                dataMap[id] = defineStore(`data-${id}`, {
                     state: () => {
                         return {
                             data: item.default,
@@ -119,7 +121,7 @@ const handleData = (app: App, config: SFETWebConfigData) => {
             console.log(err)
         }
     });
-    // app.config.globalProperties.$sfet.data = dataMap;
+    app.config.globalProperties.$sfet.data = dataMap;
 };
 
 export default handleData;

@@ -11,7 +11,8 @@ const getProp = function($global: any, id: string): any {
             let dataId = index[0];
             let subIndex = index[1] || 'data';
             // prop[key] = $global.$store.state.data[dataId].data;
-            prop[key] = $global.$pinia.state.value[`data-${dataId}`][subIndex];
+            // prop[key] = $global.$pinia.state.value[`data-${dataId}`][subIndex];
+            prop[key] = $global.$sfet.data[dataId][subIndex];
         }
     });
     return prop;

@@ -15,22 +15,19 @@
                     "name": "child1",
                     "layout": "layout1",
                     "default": true,
-                    "eventAfter": "e1",
                     "children": [
                         {
                             "id": "id1-c1-d1",
                             "path": "d1",
                             "name": "d1",
                             "layout": "layout2",
-                            "default": true,
-                            "eventAfter": "e1"
+                            "default": true
                         },
                         {
                             "id": "id1-c1-d2",
                             "path": "d2",
                             "name": "d2",
-                            "layout": "layout3",
-                            "eventAfter": "e1"
+                            "layout": "layout3"
                         }
                     ]
                 },
@@ -55,7 +52,7 @@
         },
         "id1-a1": {
             "config": {
-                "data": "$sfetData:id1",
+                "data": "$sfetData:id2",
                 "basePath": "/pages"
             },
             "handle": "console.log($global, rest, this);return this.config;"
@@ -115,7 +112,7 @@
     "event": {
         "e1": {
             "type": "f",
-            "body": "console.log($global, rest, this);\n"
+            "body": "console.log($global, rest, this);\n$global.$sfet.data.id2.update().then()"
         }
     },
     "theme": {

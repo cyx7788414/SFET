@@ -14,6 +14,7 @@ const handleRoute = (app: App, router: Router, config: SFETWebConfig) => {
                 }
             }
             to.matched.slice(i).forEach(v => {
+                if (!v.meta.eventAfter) {return;}
                 let call = app.config.globalProperties.$sfet.event[v.meta.eventAfter as string || '-1'];
                 call(v);
             });
