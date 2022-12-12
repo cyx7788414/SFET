@@ -4,7 +4,7 @@ import SFETWebConfig from "../class/config";
 import json from '../config.json';
 import handleData from "./data";
 import handleProp from "./prop";
-import getHandleRoute from "./router";
+import handleRoute from "./router";
 import handleTheme from "./theme";
 import handleApi from "./api";
 import handleEvent from "./event";
@@ -28,23 +28,7 @@ const initConfig = (app: App, router: Router) => {
 
         config.props && handleProp(app, config.props || {});
 
-
-        router.afterEach((to, from, failure) => {
-            if (!failure) {
-                console.log(to.matched, from.matched);
-                let i;
-                for (i = 0; i < to.matched.length; i++) {
-                    if (to.matched[i] !== from.matched[i]) {
-                        break;
-                    }
-                }
-                to.matched.slice(i).forEach(v => {
-                    console.log(v.name);
-                });
-            }
-        });
-
-        getHandleRoute(router, config)(config.routes);
+        config.routes && handleRoute(app, router, config);
 
         config.theme && handleTheme(config.theme || {css: {}, var: {}});
 

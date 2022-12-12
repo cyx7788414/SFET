@@ -56,19 +56,16 @@ export type SFETWebConfigRouteItem = {
     layout: string;
     default?: boolean;
     children?: Array<SFETWebConfigRouteItem>;
+    eventAfter?: string;
 };
 
 export type SFETWebConfigEventItem = {
-    type: string;
+    type: 'f';//f: function
     body: string | Array<SFETWebConfigEventItem>;
 };
 
 export type SFETWebConfigEvent = {
     [key: string]: SFETWebConfigEventItem;
-};
-
-export type SFETWebConfigRouterEvent = {
-   [key: string]: string;
 };
 
 type SFETWebConfig = {
@@ -78,7 +75,6 @@ type SFETWebConfig = {
     props: SFETWebConfigProp;
     api?: SFETWebConfigApi;
     event?: SFETWebConfigEvent;
-    routerEvent?: SFETWebConfigRouterEvent
 };
 
 export default SFETWebConfig;

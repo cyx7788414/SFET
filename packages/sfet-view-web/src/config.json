@@ -7,6 +7,7 @@
             "name": "pages",
             "layout": "kabiLayout1",
             "default": true,
+            "eventAfter": "e1",
             "children": [
                 {
                     "id": "id1-c1",
@@ -14,19 +15,22 @@
                     "name": "child1",
                     "layout": "layout1",
                     "default": true,
+                    "eventAfter": "e1",
                     "children": [
                         {
                             "id": "id1-c1-d1",
                             "path": "d1",
                             "name": "d1",
                             "layout": "layout2",
-                            "default": true
+                            "default": true,
+                            "eventAfter": "e1"
                         },
                         {
                             "id": "id1-c1-d2",
                             "path": "d2",
                             "name": "d2",
-                            "layout": "layout3"
+                            "layout": "layout3",
+                            "eventAfter": "e1"
                         }
                     ]
                 },
@@ -108,14 +112,11 @@
             "nsCheck": "console.log($global, rest, this);return {};"
         }
     },
-    "routerEvent": {
-        "pages": "e1",
-        "child1": "e1",
-        "d1": "e1",
-        "d2": "e1"
-    },
     "event": {
-        "e1": "console.log($global, rest, this);"
+        "e1": {
+            "type": "f",
+            "body": "console.log($global, rest, this);\n"
+        }
     },
     "theme": {
         "css": {

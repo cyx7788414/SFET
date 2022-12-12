@@ -5,14 +5,16 @@ import { strToFunc } from '../common/func';
 export type SFETEventObj = unknown | Function;
 
 const handleEvent = (app: App, config: SFETWebConfigEvent) => {
-    let eventMap: Record<string, SFETEventObj> = {};
+    let eventMap: Record<string, Function> = {
+        '-1': function() {console.log('empty event: ', arguments);}
+    };
     Object.entries(config).forEach(([id, item]) => {
         try {
-            // if (item.handle) {
-            //     propMap[id] = strToFunc(item.handle, item);
-            // } else {
-            //     propMap[id] = item.config;
-            // }
+            if (item.type === 'f') {
+                eventMap[id] = strToFunc(item.body as string, item);
+            } else {
+                // propMap[id] = item.config;
+            }
         } catch(err) {
             console.log(err);
         }
