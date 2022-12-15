@@ -1,4 +1,4 @@
-import { App } from "vue";
+import { App, reactive } from "vue";
 import { SFETWebConfigData } from "../class/config";
 import { strToFunc } from '../common/func';
 
@@ -52,6 +52,7 @@ const handleData = (app: App, config: SFETWebConfigData) => {
                 //     //     }
                 //     // }
                 // });
+                // dataMap[id] = defineStore(`data-${id}`, {
                 dataMap[id] = defineStore(`data-${id}`, {
                     state: () => {
                         return {
@@ -59,7 +60,7 @@ const handleData = (app: App, config: SFETWebConfigData) => {
                             loading: false
                         };
                     }
-                })();
+                });
             } else if (item.type === 'd') {
                 dataMap[id] = defineStore(`data-${id}`, {
                     state: () => {
@@ -75,10 +76,11 @@ const handleData = (app: App, config: SFETWebConfigData) => {
                             this.loading = false;
                         },
                         reset() {
-                            this.data = item.default;
+                            // this.data = item.default;
+                            this.$reset();
                         }
                     }
-                })();
+                });
                 // let obj: SFETDataObj = {
                 //     data: undefined,
                 //     status: 'loading',

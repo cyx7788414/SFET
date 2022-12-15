@@ -1,4 +1,4 @@
-import { App } from "vue";
+import { App, reactive } from "vue";
 import { SFETWebConfigProp } from "../class/config";
 import { strToFunc } from '../common/func';
 

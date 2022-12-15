@@ -69,10 +69,10 @@ export type SFETWebConfigEvent = {
 };
 
 type SFETWebConfig = {
-    routes?: Array<SFETWebConfigRouteItem>;
+    route?: Array<SFETWebConfigRouteItem>;
     theme?: SFETWebConfigTheme;  
     data?: SFETWebConfigData;
-    props: SFETWebConfigProp;
+    prop: SFETWebConfigProp;
     api?: SFETWebConfigApi;
     event?: SFETWebConfigEvent;
 };

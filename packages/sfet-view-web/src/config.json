@@ -1,6 +1,6 @@
 {
     "build": true,
-    "routes": [
+    "route": [
         {
             "id": "id1",
             "path": "/pages",
@@ -40,7 +40,7 @@
             ]
         }
     ],
-    "props": {
+    "prop": {
         "id1": {
             "config": {
                 "asideComp": {
@@ -55,7 +55,7 @@
                 "data": "$sfetData:id2",
                 "basePath": "/pages"
             },
-            "handle": "console.log($global, rest, this);return this.config;"
+            "handle": "return this.config;"
         }
     },
     "data": {
@@ -112,7 +112,7 @@
     "event": {
         "e1": {
             "type": "f",
-            "body": "console.log($global, rest, this);\n$global.$sfet.data.id2.update().then()"
+            "body": "console.log($global, rest, this);\n$global.$sfet.data.id2().update().then()"
         }
     },
     "theme": {

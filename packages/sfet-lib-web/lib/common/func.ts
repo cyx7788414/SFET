@@ -1,18 +1,21 @@
+import { reactive, watch } from "vue";
 
 
 const getProp = function($global: any, id: string): any {
-    let prop = $global.$sfet.prop[id];
+    let prop = $global.$sfet.prop[id];//will loose reactive
     if (typeof prop === 'function') {
         prop = prop();
     }
+    prop = reactive(prop);//to make prop reactive
     Object.entries(prop).forEach(([key, item]) => {
         if (typeof item === 'string' && item.startsWith('$sfetData:')) {
             let index: string[] = item.substring(10).split('-');
             let dataId = index[0];
             let subIndex = index[1] || 'data';
-            // prop[key] = $global.$store.state.data[dataId].data;
-            // prop[key] = $global.$pinia.state.value[`data-${dataId}`][subIndex];
-            prop[key] = $global.$sfet.data[dataId][subIndex];
+            const store = $global.$sfet.data[dataId]();
+            watch(store, (n, o) => {//watch store to follow child change
+                prop[key] = store[subIndex];
+            }, {immediate: true});
         }
     });
     return prop;

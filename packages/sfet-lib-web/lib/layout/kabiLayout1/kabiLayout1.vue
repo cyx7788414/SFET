@@ -25,17 +25,20 @@ const props = defineProps({
         type: Object as PropType<PropsComponentItem>
     }
 });
+// console.log(props)
 const $global: any = inject('$global');
 const asideprop = props.asideComp?getProp($global, props.asideComp.id):{};
+console.log(asideprop)
 const asideCompConf = reactive(asideprop); 
+console.log(asideCompConf)
 
 const $event: any = inject('$event');
 $event.onBeforeRouteUpdate(()=>{
     console.log(1);
 });
 $event.onMounted((a: any, b: any, c: any)=> {
-    console.log(2, a, b, c)
-    console.log($event);
+    // console.log(2, a, b, c)
+    // console.log($event);
 });
 
 </script>

@@ -4,7 +4,8 @@ import SFETWebConfig, { SFETWebConfigRouteItem } from '../class/config';
 import { strToFunc } from '../common/func';
 
 const layouts = import.meta.glob('../../node_modules/sfet-lib-web/lib/layout/*/*.vue');
-const handleRoute = (app: App, router: Router, config: SFETWebConfig) => {
+const handleRoute = (app: App, router: Router, route: SFETWebConfigRouteItem[]) => {
+    const $sfet = app.config.globalProperties.$sfet;
     router.afterEach((to, from, failure) => {
         if (!failure) {
             let i;
@@ -15,7 +16,7 @@ const handleRoute = (app: App, router: Router, config: SFETWebConfig) => {
             }
             to.matched.slice(i).forEach(v => {
                 if (!v.meta.eventAfter) {return;}
-                let call = app.config.globalProperties.$sfet.event[v.meta.eventAfter as string || '-1'];
+                let call = $sfet.event[v.meta.eventAfter as string || '-1'];
                 call(v);
             });
         }
@@ -29,12 +30,16 @@ const handleRoute = (app: App, router: Router, config: SFETWebConfig) => {
                 meta: {},
                 component: layouts[`../../node_modules/sfet-lib-web/lib/layout/${item.layout}/${item.layout}.vue`],
                 props: route => {//
-                    const prop = config.props[item.id];
-                    if (prop && prop.handle) {
-                        return strToFunc(prop.handle, prop)();
-                    } else {
-                        return prop?.config || {};
+                    const prop = $sfet.prop[item.id];
+                    if (!prop) {
+                        return {};
                     }
+                    return typeof prop === 'function'?prop():prop;
+                    // if (prop && prop.handle) {
+                    //     return strToFunc(prop.handle, prop)();
+                    // } else {
+                    //     return prop?.config || {};
+                    // }
                 }
             };
             //event
@@ -68,7 +73,7 @@ const handleRoute = (app: App, router: Router, config: SFETWebConfig) => {
         });
         return defaultRoute;
     };
-    buildRoute(config.routes);
+    buildRoute(route);
 }
 
 export default handleRoute;
