@@ -3,6 +3,9 @@ import { reactive, watch } from "vue";
 
 const getProp = function($global: any, id: string): any {
     let prop = $global.$sfet.prop[id];//will loose reactive
+    if (!prop) {
+        return {};
+    }
     if (typeof prop === 'function') {
         prop = prop();
     }

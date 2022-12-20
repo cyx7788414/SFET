@@ -52,7 +52,7 @@
         },
         "id1-a1": {
             "config": {
-                "data": "$sfetData:id2",
+                "data": "$sfetData:id1",
                 "basePath": "/pages"
             },
             "handle": "return this.config;"

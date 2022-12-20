@@ -5,7 +5,6 @@ provide('$global', readonly($global));
 provide('$event', {
   onMounted: window.Vue.onMounted,
   onUnmounted: window.Vue.onUnmounted,
-  onBeforeRouteUpdate: window.Router.onBeforeRouteUpdate
 });
 </script>
 
