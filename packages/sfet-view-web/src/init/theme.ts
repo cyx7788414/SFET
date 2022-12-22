@@ -8,7 +8,7 @@ const handleTheme = (config: SFETWebConfigTheme) => {
     const css = config.css || {};
     const vars = config.var || {};
     let style: HTMLStyleElement = document.createElement('style');
-    style.type = 'text/css';
+    // style.type = 'text/css';
     style.innerHTML = `
         :root {
             ${getStr(css)}

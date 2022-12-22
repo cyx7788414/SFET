@@ -88,11 +88,12 @@ console.log(props);
 </script> -->
 <style lang="less" scoped>
 .sfet-var-container {
-    --el-menu-bg-color: var(--sfet-color-primary);
-    --el-menu-active-color: var(--sfet-color-primary);
-    --el-menu-text-color: var(--sfet-text-color-primary);
+    --el-menu-active-color: red;
+    // --el-menu-bg-color: var(--sfet-color-primary);
+    // --el-menu-active-color: var(--sfet-color-primary);
+    // --el-menu-text-color: var(--sfet-text-color-primary);
 
-    --el-menu-hover-text-color: var(--sfet-color-primary);
+    // --el-menu-hover-text-color: var(--sfet-color-primary);
     // --el-menu-bg-color: var(--el-fill-color-blank);
     // --el-menu-hover-bg-color: var(--el-color-primary-light-9);
     // --el-menu-item-height: 56px;

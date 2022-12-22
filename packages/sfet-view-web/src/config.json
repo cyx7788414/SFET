@@ -47,6 +47,8 @@
                     "id": "id1-a1",
                     "name": "kabiMenu1",
                     "type": "component"
+                },
+                "style": {
                 }
             }
         },

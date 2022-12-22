@@ -1,14 +1,15 @@
 <template>
-    <el-container class="layout">
-        <el-header>{{props}}</el-header>
+    <el-container class="layout" :style="props.style || {}">
+        <el-header class="header">
+            <!-- <d-container v-bind="props.headerComp"></d-container> -->
+        </el-header>
         <el-container class="body">
-            <el-aside width="200px">
+            <el-aside width="200px" class="aside">
                 <el-scrollbar>
-                    <!-- <component :is="defineAsyncComponent(()=>import(`../../${asideComp?.type}/${asideComp?.name}/${asideComp?.name}.vue`))" v-bind="asideCompConf"></component> -->
                     <d-container v-bind="props.asideComp"></d-container>
                 </el-scrollbar>
             </el-aside>
-            <el-main>
+            <el-main class="main">
                 <el-scrollbar>
                     <router-view></router-view>
                 </el-scrollbar>
@@ -22,6 +23,12 @@ import { DContainer } from '../../common/component/dContainer/index'
 import { PropsComponentItem } from '../../common/type';
 type kabiLayout1Props = {
     asideComp: PropsComponentItem;
+    headerComp: PropsComponentItem;
+    style?: {
+        '--main-back-color'?: string;
+        '--aside-back-color'?: string;
+        '--header-back-color'?: string;
+    }
 };
 const props = defineProps<kabiLayout1Props>();
 // const $event: any = inject('$event');
@@ -35,12 +42,21 @@ const props = defineProps<kabiLayout1Props>();
 .layout {
     height: 100%;
     background-color: #eee;
+    --main-back-color: var(--sfet-bg-color);
+    --aside-back-color: var(--sfet-color-primary);
+    --header-back-color: var(--sfet-color-primary);
 }
 .body {
     overflow: auto;
+    .aside {
+        background-color: var(--aside-back-color);
+    }
 }
-el-header {
-    background-color: #6fba2c;
+.header {
+    background-color: var(--header-back-color);
+}
+.main {
+    background-color: var(--main-back-color);
 }
 el-main, el-aside {
     overflow: auto;

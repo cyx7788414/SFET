@@ -6,7 +6,7 @@ import { strToFunc } from '../common/func';
 const layouts = import.meta.glob('../../node_modules/sfet-lib-web/lib/layout/*/*.vue');
 const handleRoute = (app: App, router: Router, route: SFETWebConfigRouteItem[]) => {
     const $sfet = app.config.globalProperties.$sfet;
-    router.afterEach((to, from, failure) => {
+    router.afterEach((to, from, failure) => {//global router event
         if (!failure) {
             let i;
             for (i = 0; i < to.matched.length; i++) {
