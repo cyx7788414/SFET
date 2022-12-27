@@ -1,19 +1,36 @@
 import * as VueRouter from 'vue-router';
 import type { RouteRecordRaw } from 'vue-router';
-import LoadingViewVue from './views/LoadingView.vue';
 import FofViewVue from './views/FofView.vue';
+import LoginView from './views/LoginView.vue';
+import PagesView from './views/PagesView.vue';
+import DocView from './views/DocView.vue';
+
 
 
 const routes: RouteRecordRaw[] = [
     {
         path: '/',
         name: 'root',
-        component: LoadingViewVue,
+        component: PagesView
+    },
+    {
+        path: '/login',
+        name: 'login',
+        component: LoginView
+    },
+    {
+        path: '/doc',
+        name: 'doc',
+        component: DocView
     },
     {
         path: '/404',
         name: '404',
         component: FofViewVue
+    },
+    {
+        path: '/:pathMatch(.*)*',
+        redirect: '/404'
     }
 ];
 
